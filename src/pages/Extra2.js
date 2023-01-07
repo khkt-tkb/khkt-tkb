@@ -169,8 +169,8 @@ const Extra2 = props => {
               props.setGlobalPage(2);
               return;
             }
-            await Axios.post('http://localhost:5000', {
-            //await Axios.post('https://khkt-tkb-api.onrender.com', {
+            //await Axios.post('http://localhost:5000', {
+            await Axios.post('https://khkt-tkb-api.onrender.com', {
               requestType: 'send',
               email: values.email,
               language: props.language,
