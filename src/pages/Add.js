@@ -72,7 +72,23 @@ const Add = props => {
                       label={props.language === 'vi-vn' ? "Độ nặng" : "Weight"}
                       required
                       defaultValue="1"
-                      data={['1', '2', '3', '4', '5']}
+                      data={[
+                        {
+                          value: '1', label: props.language === 'vi-vn' ? '1 - Cực kì áp lực' : '1 - Very intense'
+                        },
+                        {
+                          value: '2', label: props.language === 'vi-vn' ? '2 - Áp lực' : '2 - Intense'
+                        },
+                        {
+                          value: '3', label: props.language === 'vi-vn' ? '3 - Bình thường' : '3 - Normal'
+                        },
+                        {
+                          value: '4', label: props.language === 'vi-vn' ? '4 - Thoải mái' : '4 - Comfortable'
+                        },
+                        {
+                          value: '5', label: props.language === 'vi-vn' ? '5 - Cực kì thoải mái' : '5 - Very comfortable'
+                        },
+                      ]}
                       {...props.add.getInputProps('priority')}
                     />
                   </Group>
