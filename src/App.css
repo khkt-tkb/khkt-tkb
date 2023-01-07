@@ -2,6 +2,7 @@
   overflow: hidden;
   position: relative;
   height: 100vh;
+  caret-color: transparent;
   background-size: 300% 300%;
   background-image: linear-gradient(-45deg,
     rgba(194, 233, 251, 1) 0%,

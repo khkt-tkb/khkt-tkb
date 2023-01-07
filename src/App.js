@@ -252,8 +252,8 @@ export default function App() {
 
   const cancelSend = async () => {
     if (activeEmails.length > 0) {
-      //await Axios.post('http://localhost:5000', {
-      await Axios.post('https://khkt-tkb-api.onrender.com', {
+      await Axios.post('http://localhost:5000', {
+      //await Axios.post('https://khkt-tkb-api.onrender.com', {
         requestType: 'cancel',
         emailList: activeEmails,
       }).then(res => console.log(res));
