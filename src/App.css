@@ -26,7 +26,6 @@
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
-  /* works with row or column */
 
   flex-direction: column;
   -webkit-align-items: center;

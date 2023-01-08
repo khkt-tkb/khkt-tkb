@@ -74,19 +74,19 @@ const Add = props => {
                       defaultValue="1"
                       data={[
                         {
-                          value: '1', label: props.language === 'vi-vn' ? '1 - Cực kì áp lực' : '1 - Very intense'
+                          value: '1', label: props.language === 'vi-vn' ? '1 - Cực kì thoải mái' : '1 - Very comfortable'
                         },
                         {
-                          value: '2', label: props.language === 'vi-vn' ? '2 - Áp lực' : '2 - Intense'
+                          value: '2', label: props.language === 'vi-vn' ? '2 - Thoải mái' : '2 - Comfortable'
                         },
                         {
                           value: '3', label: props.language === 'vi-vn' ? '3 - Bình thường' : '3 - Normal'
                         },
                         {
-                          value: '4', label: props.language === 'vi-vn' ? '4 - Thoải mái' : '4 - Comfortable'
+                          value: '4', label: props.language === 'vi-vn' ? '4 - Áp lực' : '4 - Intense'
                         },
                         {
-                          value: '5', label: props.language === 'vi-vn' ? '5 - Cực kì thoải mái' : '5 - Very comfortable'
+                          value: '5', label: props.language === 'vi-vn' ? '5 - Cực kì áp lực' : '5 - Very intense'
                         },
                       ]}
                       {...props.add.getInputProps('priority')}

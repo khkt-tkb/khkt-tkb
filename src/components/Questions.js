@@ -168,7 +168,7 @@ const Questions = props => {
     return (
       <>
         <Expire delay={props.transitionDuration * 1000}>
-          <div style={{pointerEvents: 'none'}}>
+          <div style={{ pointerEvents: 'none' }}>
             {e}
           </div>
         </Expire>
@@ -180,91 +180,94 @@ const Questions = props => {
   }); // abomination
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: props.transitionDuration }}
-    >
-      <Paper withBorder shadow="md" p="xl" mt={30} radius="md">
-        <form
-          onSubmit={props.survey.onSubmit(values => {
-            const errorMsg = props.language === 'vi-vn' ? 'Vui lòng trả lời câu hỏi!' : 'Please answer the question!';
+    <Stack align="center">
 
-            if (props.surveyPage === 0 && values.Q1 === '') {
-              props.survey.setFieldError('Q1', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 1 && values.Q2 === '') {
-              props.survey.setFieldError('Q2', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 2 && values.Q3 === '') {
-              props.survey.setFieldError('Q3', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 3 && values.Q4 === '') {
-              props.survey.setFieldError('Q4', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 4 && values.Q5 === '') {
-              props.survey.setFieldError('Q5', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 5 && values.Q6 === '') {
-              props.survey.setFieldError('Q6', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 6 && values.Q7 === '') {
-              props.survey.setFieldError('Q7', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 7 && values.Q8 === '') {
-              props.survey.setFieldError('Q8', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 8 && values.Q9 === '') {
-              props.survey.setFieldError('Q9', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 9 && values.Q10 === '') {
-              props.survey.setFieldError('Q10', errorMsg);
-              return;
-            }
-            if (props.surveyPage === 10) {
-              if (values.Q11 === '') {
-                props.survey.setFieldError('Q11', errorMsg);
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: props.transitionDuration }}
+      >
+        <Paper withBorder shadow="md" p="xl" mt={30} radius="md">
+          <form
+            onSubmit={props.survey.onSubmit(values => {
+              const errorMsg = props.language === 'vi-vn' ? 'Vui lòng trả lời câu hỏi!' : 'Please answer the question!';
+
+              if (props.surveyPage === 0 && values.Q1 === '') {
+                props.survey.setFieldError('Q1', errorMsg);
                 return;
               }
-              let firstSum = 0, secondSum = 0;
-              Object.values(props.survey.values).forEach(value => {
-                if (value === '1') {
-                  firstSum++;
+              if (props.surveyPage === 1 && values.Q2 === '') {
+                props.survey.setFieldError('Q2', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 2 && values.Q3 === '') {
+                props.survey.setFieldError('Q3', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 3 && values.Q4 === '') {
+                props.survey.setFieldError('Q4', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 4 && values.Q5 === '') {
+                props.survey.setFieldError('Q5', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 5 && values.Q6 === '') {
+                props.survey.setFieldError('Q6', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 6 && values.Q7 === '') {
+                props.survey.setFieldError('Q7', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 7 && values.Q8 === '') {
+                props.survey.setFieldError('Q8', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 8 && values.Q9 === '') {
+                props.survey.setFieldError('Q9', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 9 && values.Q10 === '') {
+                props.survey.setFieldError('Q10', errorMsg);
+                return;
+              }
+              if (props.surveyPage === 10) {
+                if (values.Q11 === '') {
+                  props.survey.setFieldError('Q11', errorMsg);
+                  return;
                 }
-                else {
-                  secondSum++;
-                }
-              })
-              props.setLearnerType(firstSum > secondSum ? 'Visual' : 'Auditory');
-              props.setGlobalPage(1);
-              return;
-            }
+                let firstSum = 0, secondSum = 0;
+                Object.values(props.survey.values).forEach(value => {
+                  if (value === '1') {
+                    firstSum++;
+                  }
+                  else {
+                    secondSum++;
+                  }
+                })
+                props.setLearnerType(firstSum > secondSum ? 'Visual' : 'Auditory');
+                props.setGlobalPage(1);
+                return;
+              }
 
-            props.setSurveyPage(props.surveyPage + 1);
-          })}
-        >
-          <Stack align="center" spacing="xl">
-            {questionList[props.surveyPage]}
-            <Button
-              variant="gradient"
-              gradient={{ from: 'indigo', to: 'cyan' }}
-              type="submit"
-            >
-              {props.language === 'vi-vn' ? 'Tiếp' : 'Next'}
-            </Button>
-          </Stack>
-        </form>
-      </Paper>
-    </motion.div>
+              props.setSurveyPage(props.surveyPage + 1);
+            })}
+          >
+            <Stack align="center" spacing="xl">
+              {questionList[props.surveyPage]}
+              <Button
+                variant="gradient"
+                gradient={{ from: 'indigo', to: 'cyan' }}
+                type="submit"
+              >
+                {props.language === 'vi-vn' ? 'Tiếp' : 'Next'}
+              </Button>
+            </Stack>
+          </form>
+        </Paper>
+      </motion.div>
+    </Stack>
   );
 };
 

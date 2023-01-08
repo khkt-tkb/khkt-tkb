@@ -71,7 +71,7 @@ const ScheduleResult = props => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: props.transitionDuration }}
         >
-          <Container my={50}>
+          <Container my={90}>
             <Flex gap="md">
               <Paper withBorder shadow="md" p="xl" radius="md" align="center">
                 <Table>

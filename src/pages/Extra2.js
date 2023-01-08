@@ -3,6 +3,8 @@ import {
   Paper,
   Button,
   Group,
+  Container,
+  ScrollArea,
 } from "@mantine/core";
 import { motion } from 'framer-motion'
 import Axios from 'axios';
@@ -149,60 +151,64 @@ const Extra2 = props => {
 
   return (
     <div className="center">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: props.transitionDuration }}
-      >
-        <Paper withBorder shadow="md" p="xl" radius="md">
-          <form onSubmit={props.emailField.onSubmit(async values => {
-            if (!props.activeEmails.includes(values.email)) {
-              props.setActiveEmails(props.activeEmails.concat([values.email]));
-            }
-            props.emailField.reset();
-            props.setGlobalPage(5);
-            if (props.taskList.length > 0) {
-              await process();
-            }
-            else {
-              alert(props.language === 'vi-vn' ? 'Vui lòng nhập ít nhất 1 công việc!' : 'Please fill in at least 1 task!')
-              props.setGlobalPage(2);
-              return;
-            }
-            //await Axios.post('http://localhost:5000', {
-            await Axios.post('https://khkt-tkb-api.onrender.com', {
-              requestType: 'send',
-              email: values.email,
-              language: props.language,
-              todoList: todoList,
-              learnerType: props.learnerType,
-            }).then(res => console.log(res));
-          })}>
-            <TextInput
-              label={props.language === 'vi-vn' ? "Nhập email để nhận thông báo lịch" : "Enter email to receive schedule notifications"}
-              placeholder={props.language === 'vi-vn' ? "Nhập email" : "Enter email"}
-              required
-              {...props.emailField.getInputProps('email')}
-            />
-            <Group position="center" mt="xl">
-              <Button
-                variant="gradient"
-                gradient={{ from: 'indigo', to: 'cyan' }}
-                onClick={() => props.setGlobalPage(3)}
-              >
-                {props.language === 'vi-vn' ? 'Trước' : 'Previous'}
-              </Button>
-              <Button
-                variant="gradient"
-                gradient={{ from: 'indigo', to: 'cyan' }}
-                type="submit"
-              >
-                {props.language === 'vi-vn' ? 'Tiếp' : 'Next'}
-              </Button>
-            </Group>
-          </form>
-        </Paper>
-      </motion.div>
+      <ScrollArea type="scroll">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: props.transitionDuration }}
+        >
+          <Container my={90}>
+            <Paper withBorder shadow="md" p="xl" radius="md">
+              <form onSubmit={props.emailField.onSubmit(async values => {
+                if (!props.activeEmails.includes(values.email)) {
+                  props.setActiveEmails(props.activeEmails.concat([values.email]));
+                }
+                props.emailField.reset();
+                props.setGlobalPage(5);
+                if (props.taskList.length > 0) {
+                  await process();
+                }
+                else {
+                  alert(props.language === 'vi-vn' ? 'Vui lòng nhập ít nhất 1 công việc!' : 'Please fill in at least 1 task!')
+                  props.setGlobalPage(2);
+                  return;
+                }
+                //await Axios.post('http://localhost:5000', {
+                await Axios.post('https://khkt-tkb-api.onrender.com', {
+                  requestType: 'send',
+                  email: values.email,
+                  language: props.language,
+                  todoList: todoList,
+                  learnerType: props.learnerType,
+                }).then(res => console.log(res));
+              })}>
+                <TextInput
+                  label={props.language === 'vi-vn' ? "Nhập email để nhận thông báo lịch" : "Enter email to receive schedule notifications"}
+                  placeholder={props.language === 'vi-vn' ? "Nhập email" : "Enter email"}
+                  required
+                  {...props.emailField.getInputProps('email')}
+                />
+                <Group position="center" mt="xl">
+                  <Button
+                    variant="gradient"
+                    gradient={{ from: 'indigo', to: 'cyan' }}
+                    onClick={() => props.setGlobalPage(3)}
+                  >
+                    {props.language === 'vi-vn' ? 'Trước' : 'Previous'}
+                  </Button>
+                  <Button
+                    variant="gradient"
+                    gradient={{ from: 'indigo', to: 'cyan' }}
+                    type="submit"
+                  >
+                    {props.language === 'vi-vn' ? 'Tiếp' : 'Next'}
+                  </Button>
+                </Group>
+              </form>
+            </Paper>
+          </Container>
+        </motion.div>
+      </ScrollArea>
     </div>
   );
 };
